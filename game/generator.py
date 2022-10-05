@@ -52,8 +52,21 @@ def diamondSquare(mt, width, rangeOfValue, distance, step_size):
                                             except IndexError:
                                                 try:
                                                     mt[i][j] = round((mt[i+distance][j+distance] + mt[i+distance][j-distance])/2 + r)
-                                                except:
-                                                    pass
+                                                except IndexError:
+                                                    try:
+                                                        mt[i][j] = round((mt[i+distance][j+distance] + r))
+                                                    except IndexError:
+                                                        try:
+                                                            mt[i][j] = round((mt[i+distance][j-distance] + r))
+                                                        except IndexError:
+                                                            try:
+                                                                mt[i][j] = round((mt[i-distance][j+distance] + r))
+                                                            except IndexError:
+                                                                try:
+                                                                    mt[i][j] = round((mt[i-distance][j-distance] + r))
+                                                                except IndexError:
+                                                                    pass
+
         #this is the square step
         for i in range(width):
             for j in range(width):
@@ -86,7 +99,6 @@ def diamondSquare(mt, width, rangeOfValue, distance, step_size):
                                                     mt[i][j] = round((mt[i][j-distance]+mt[i+distance][j])/2+k)
                                                 except:
                                                     pass
-
 
         step_size = step_size / 2
         distance = int(step_size / 2)
